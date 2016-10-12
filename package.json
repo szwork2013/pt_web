@@ -4,6 +4,8 @@
     "index": "./src/index.js"
   },
   "dependencies": {
+    "antd": "^2.0.1",
+    "babel-plugin-import": "^1.0.1",
     "dva": "^1.0.0",
     "express": "^4.14.0",
     "react": "^15.1.0",
