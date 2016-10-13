@@ -1,12 +1,18 @@
 import React, { Component, PropTypes } from 'react';
+import {Affix} from 'antd'
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import styles from './IndexPage.less';
+import HeaderBar from '../layouts/header_layout/HeaderLayout'
 
-function IndexPage() {
+function IndexPage({ children }) {
   return (
-    <div className={styles.normal}>
-      <h1>宝宝快点睡觉啦</h1>
+    <div>
+      <HeaderBar />
+
+      <div className={styles.container}>
+        {children}
+      </div>
     </div>
   );
 }
