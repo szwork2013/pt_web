@@ -4,16 +4,16 @@ import { connect } from 'dva';
 import { Link } from 'dva/router';
 import styles from './IndexPage.less';
 import HeaderBar from '../layouts/header_layout/HeaderLayout'
+import FreeScrollBar from 'react-free-scrollbar'
 
 function IndexPage({ children }) {
   return (
-    <div>
+    <FreeScrollBar>
       <HeaderBar />
-
       <div className={styles.container}>
-        {children}
+          {children}
       </div>
-    </div>
+    </FreeScrollBar>
   );
 }
 

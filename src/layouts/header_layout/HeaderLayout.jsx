@@ -12,7 +12,7 @@ export default class Header extends React.Component {
     const topFixed = styles.topFixed
     const headClass = classNames({head: true, clearfix: true, topFixed: true})
     return (
-      <header className={styles.topFixed}>
+      <header className={headClass}>
         <div>
           <div>
             <a className={styles.logo} href="/">

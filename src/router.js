@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Router, Route, IndexRoute, Link } from 'dva/router';
 import IndexPage from './routes/IndexPage';
-import Users from './routes/User'
+import Users from './routes/Users'
 import KnowTimeline from './routes/KnowTimeline'
 
 export default function({ history }) {
