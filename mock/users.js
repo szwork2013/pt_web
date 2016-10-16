@@ -7,9 +7,10 @@ const mockjs = require('mockjs')
 module.exports = {
   'GET /api/users' (req, res){
     const page = qs.parse(req.query)
+    console.log(page)
 
     const data = mockjs.mock({
-      'data|3': [{
+      'data|100': [{
         'id|+1': 1,
         name: '@cname',
         'age|11-99': 1,
@@ -26,6 +27,6 @@ module.exports = {
         success: true,
         data
       })
-    }, 3000);
+    }, 0);
   }
 }

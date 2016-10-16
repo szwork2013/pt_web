@@ -36,7 +36,7 @@ export default {
           payload: {
             list: data.data.data,
             total: data.data.page.total,
-            current: data.data.page.current
+            // current: data.data.page.current
           }
         })
       }
@@ -50,8 +50,12 @@ export default {
     showLoading(state, action) {
       return {...state,loading:true}
     }, //控制加载状态的reducer
-    showModal() {}, //控制Modal显示状态的reducer
-    hideModal() {},
+    showModal(state, action) {
+      return {...state, ...action.payload, modalVisible: true}
+    }, //控制Modal显示状态的reducer
+    hideModal(state) {
+      return { ...state, modalVisible: false };
+    },
     querySuccess(state, action) {
       return {...state,...action.payload,loading: false}
     },

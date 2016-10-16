@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {Table, message, Popconfirm} from 'antd'
 
-const UserList = ({total, current, loading, dataSource}) => {
+const UserList = ({total, current, loading, dataSource,onPageChange}) => {
   const columns = [
     {
       title: '姓名',
@@ -23,20 +23,19 @@ const UserList = ({total, current, loading, dataSource}) => {
       key:'operation',
       render:(text, record)=>(
         <p>
-          <a onClick={()=>{}}>编辑</a >
-            &nbsp;
-          <Popconfirm title = '确认要删除么?' onConfirm = {() => {}} >
+          <a onClick={()=>{}}>编辑</a > &nbsp;
+          <Popconfirm title = '确认要删除么?' onConfirm = {() => {}}>
             <a>删除</a>
           </Popconfirm>
-        </p >)
+        </p>)
     }
   ]
 
   const pagination = {
     total,
-    current,
+    defaultCurrent: 1,
     pageSize: 10,
-    onChange: () => {}
+    onChange: onPageChange
   }
 
   return (
