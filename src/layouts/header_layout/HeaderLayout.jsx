@@ -34,6 +34,12 @@ export default class Header extends React.Component {
                   timeline
                 </Link>
               </Menu.Item>
+              <Menu.Item key="marks">
+                <Link to="/marks">
+                  <Icon type="calendar"/>
+                  marks
+                </Link>
+              </Menu.Item>
               <Menu.Item key="heart">
                 <a href="http://119.29.197.107/Love.html" target="_blank" rel="noopener noreferrer"><Icon type="heart"/>Time</a>
               </Menu.Item>

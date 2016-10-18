@@ -22,9 +22,14 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
+  url = 'http://127.0.0.1:8080/v1/' + url
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then((data) => ({ data }))
-    .catch((err) => ({ err }));
+    .then((data) => ({
+      data
+    }))
+    .catch((err) => ({
+      err
+    }));
 }

@@ -3,5 +3,5 @@ import qs from 'qs'
 
 export async function query(params) {
   // return request(`/api/users?${qs.stringify(params)}`)
-  return request(`mark`)
+  return request(`mark?${qs.stringify(params)}`)
 }

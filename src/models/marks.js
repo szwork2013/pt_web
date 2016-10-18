@@ -1,7 +1,7 @@
-import {query} from '../services/users'
+import {query} from '../services/marks'
 
 export default {
-  namespace: 'users',
+  namespace: 'marks',
   state: {
     list: [],
     total: null,
@@ -17,7 +17,7 @@ export default {
       history
     }) {
       history.listen(location => {
-        if (location.pathname === '/users') {
+        if (location.pathname === '/marks') {
           dispatch({
             type: 'query',
             payload: {}
@@ -30,7 +30,6 @@ export default {
     *query({payload}, {select,call,put}) {
       yield put({type: 'showLoading'})
       const {data} = yield call(query)
-      console.log(data)
       if (data) {
         yield put({
           type: 'querySuccess',
