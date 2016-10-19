@@ -1,4 +1,5 @@
 import {query} from '../services/users'
+import {parse} from 'qs'
 
 export default {
   namespace: 'users',
@@ -20,17 +21,16 @@ export default {
         if (location.pathname === '/users') {
           dispatch({
             type: 'query',
-            payload: {}
+            payload: location.query
           })
         }
       })
     }
   },
   effects: {
-    *query({payload}, {select,call,put}) {
+    *query({payload}, {call,put}) {
       yield put({type: 'showLoading'})
-      const {data} = yield call(query)
-      console.log(data)
+      const {data} = yield call(query, parse(payload))
       if (data) {
         yield put({
           type: 'querySuccess',

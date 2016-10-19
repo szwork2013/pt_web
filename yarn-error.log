@@ -1,0 +1,68 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Git\cmd;%USERPROFILE%\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\SlikSvn\bin;C:\Program Files\nodejs\;C:\Program Files\phantomjs-2.1.1-windows\bin;C:\Go\bin;C:\Go\openCode\bin;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files (x86)\Yarn\bin;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files\Docker Toolbox;C:\Program Files\Boot2Docker for Windows;C:\Users\Administrator\AppData\Local\atom\bin;C:\Users\Administrator\AppData\Local\Yarn\.bin
+
+Yarn version: 
+  0.16.0
+
+Node version: 
+  4.4.5
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "private": true,
+    "entry": {
+      "index": "./src/index.js"
+    },
+    "dependencies": {
+      "antd": "^2.0.1",
+      "classnames": "^2.2.5",
+      "dva": "^1.0.0",
+      "express": "^4.14.0",
+      "qs": "^6.2.1",
+      "react": "^15.1.0",
+      "react-dom": "^15.1.0",
+      "react-free-scrollbar": "^1.0.0"
+    },
+    "devDependencies": {
+      "atool-build": "^0.7.6",
+      "atool-test-mocha": "^0.1.5",
+      "babel-plugin-dev-expression": "^0.2.1",
+      "babel-plugin-dva-hmr": "^0.1.0",
+      "babel-plugin-import": "^1.0.1",
+      "babel-plugin-transform-runtime": "^6.9.0",
+      "babel-runtime": "^6.9.2",
+      "dora": "0.3.x",
+      "dora-plugin-proxy": "^0.7.0",
+      "dora-plugin-webpack": "0.6.x",
+      "dora-plugin-webpack-hmr": "^0.1.0",
+      "expect": "^1.20.2",
+      "mockjs": "^1.0.1-beta3",
+      "redbox-react": "^1.2.10"
+    },
+    "scripts": {
+      "start": "dora --plugins \"proxy,webpack,webpack-hmr\"",
+      "build": "atool-build",
+      "test": "atool-test-mocha ./src/**/*-test.js"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+bower manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com:443
+      at Object.exports._errnoException (util.js:870:11)
+      at errnoException (dns.js:32:15)
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:78:26)

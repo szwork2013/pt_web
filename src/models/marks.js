@@ -1,4 +1,6 @@
-import {query} from '../services/marks'
+import {query,create,remove} from '../services/marks'
+import {parse} from 'qs'
+import {message} from 'antd'
 
 export default {
   namespace: 'marks',
@@ -20,23 +22,22 @@ export default {
         if (location.pathname === '/marks') {
           dispatch({
             type: 'query',
-            payload: {}
+            payload: location.query
           })
         }
       })
     }
   },
   effects: {
-    *query({payload}, {select,call,put}) {
+    *query({payload}, {call,put}) {
       yield put({type: 'showLoading'})
-      const {data} = yield call(query)
+      const {data} = yield call(query, parse(payload))
       if (data) {
         yield put({
           type: 'querySuccess',
           payload: {
             list: data.Data,
             total: data.Total,
-            // current: data.data.page.current
           }
         })
       }else{
@@ -45,20 +46,45 @@ export default {
           payload: {
             list: null,
             total: 0,
-            // current: data.data.page.current
           }
         })
       }
     },
-    * create() {},
+    *create({payload}, {call,put}) {
+      yield put({type:'hideModal'})
+      yield put({type:'showLoading'})
+      const {data} = yield call(create, payload)
+      if(data && data.issuccess){
+        message.success('add success', 3);
+        yield put({ type: 'query', payload: '' });
+      }else{
+        message.error('add fail', 5);
+        yield put({ type: 'query', payload: '' });
+      }
+    },
     // delete是关键字
-    *'delete' () {},
+    *'delete' ({payload}, {call, put}) {
+      yield put({type: 'hideModal'})
+      yield put({type: 'showLoading'})
+      const {data} = yield call(remove, {Id: payload})
+      console.log(data)
+      if(data && data.issuccess){
+        message.success('delete success', 3);
+        yield put({ type: 'query', payload: '' });
+      }else{
+        message.error('delete fail', 5);
+        yield put({ type: 'query', payload: '' });
+      }
+    },
     * update() {}
   },
   reducers: {
     showLoading(state, action) {
       return {...state,loading:true}
     }, //控制加载状态的reducer
+    hideLoading(state, action) {
+      return {...state,loading:false}
+    },
     showModal(state, action) {
       return {...state, ...action.payload, modalVisible: true}
     }, //控制Modal显示状态的reducer
@@ -68,7 +94,8 @@ export default {
     querySuccess(state, action) {
       return {...state,...action.payload,loading: false}
     },
-    createSuccess() {},
+    createSuccess() {
+    },
     deleteSuccess() {},
     updateSuccess() {}
   }

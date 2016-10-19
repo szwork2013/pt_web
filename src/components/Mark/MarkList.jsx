@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {Table, message, Popconfirm} from 'antd'
 
-const MarkList = ({total, current, loading, dataSource,onPageChange}) => {
+const MarkList = ({total, current, loading, dataSource,onPageChange,onDeleteItem}) => {
   const columns = [
     {
       title: '编码',
@@ -21,7 +21,7 @@ const MarkList = ({total, current, loading, dataSource,onPageChange}) => {
       render:(text, record)=>(
         <p>
           <a onClick={()=>{}}>编辑</a > &nbsp;
-          <Popconfirm title = '确认要删除么?' onConfirm = {() => {}}>
+          <Popconfirm title = '确认要删除么?' onConfirm = {() => onDeleteItem(record.Id)}>
             <a>删除</a>
           </Popconfirm>
         </p>)
