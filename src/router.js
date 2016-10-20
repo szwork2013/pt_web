@@ -9,7 +9,7 @@ export default function({ history }) {
   return (
     <Router history={history}>
       <Route path="/" component={IndexPage} >
-        <Route path="/users" component={Users} />
+        // <Route path="/users" component={Users} />
         <Route path="/timeline" component={KnowTimeline} />
           <Route path="/marks" component={Marks} />
       </Route>

@@ -22,12 +22,6 @@ export default class Header extends React.Component {
           </div>
           <div>
             <Menu mode="horizontal">
-              <Menu.Item key="home">
-                <Link to="/users">
-                  <Icon type="home"/>
-                  users
-                </Link>
-              </Menu.Item>
               <Menu.Item key="timeline">
                 <Link to="/timeline">
                   <Icon type="calendar"/>
@@ -41,7 +35,7 @@ export default class Header extends React.Component {
                 </Link>
               </Menu.Item>
               <Menu.Item key="heart">
-                <a href="http://119.29.197.107/Love.html" target="_blank" rel="noopener noreferrer"><Icon type="heart"/>Time</a>
+                <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer"><Icon type="heart"/>Time</a>
               </Menu.Item>
             </Menu>
           </div>
