@@ -37,6 +37,10 @@ module.exports = function(webpackConfig, env) {
     }
   });
 
+  // webpackConfig.babel.plugins.push(['import', {
+  //    libraryName: 'antd'
+  //  }]);
+
   webpackConfig.babel.plugins.push(['import', {
      libraryName: 'antd',
      style: 'css',
