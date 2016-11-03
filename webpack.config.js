@@ -1,8 +1,25 @@
 const fs = require('fs');
 const path = require('path');
+const webpack = require('atool-build/lib/webpack');
+const ComponentPlugin = require("component-webpack-plugin");
 
 module.exports = function(webpackConfig, env) {
   webpackConfig.babel.plugins.push('transform-runtime');
+
+  // webpackConfig.babel.plugins.push([
+  //     new ComponentPlugin()
+  //    ]
+  // )
+
+  // webpackConfig.babel.plugins.push(
+  //   new webpack.optimize.UglifyJsPlugin({
+  //     compress: {
+  //       //supresses warnings, usually from module minification
+  //       warnings: false
+  //     },
+  //     mangle: false
+  //   })
+  // )
 
   // Support hmr
   if (env === 'development') {
@@ -15,6 +32,10 @@ module.exports = function(webpackConfig, env) {
   } else {
     webpackConfig.babel.plugins.push('dev-expression');
   }
+
+  // webpackConfig.plugins = webpackConfig.plugins.filter(function(plugin) {
+  //   return !(plugin instanceof webpack.optimize.CommonsChunkPlugin);
+  // });
 
   // Support CSS Modules
   // Parse all less files as css module.
