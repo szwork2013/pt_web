@@ -36,8 +36,8 @@ export default {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data.Data,
-            total: data.Total,
+            list: data.data.data,
+            total: data.total,
           }
         })
       }else{
@@ -66,13 +66,12 @@ export default {
     *'delete' ({payload}, {call, put}) {
       yield put({type: 'hideModal'})
       yield put({type: 'showLoading'})
-      const {data} = yield call(remove, {Id: payload})
-      console.log(data)
-      if(data && data.issuccess){
-        message.success('delete success', 3);
+      const {data} = yield call(remove, payload)
+      if(data && data.errcode === 1000){
+        message.success('删除成功', 3);
         yield put({ type: 'query', payload: '' });
       }else{
-        message.error('delete fail', 5);
+        message.error('删除失败' + data.errmsg, 5);
         yield put({ type: 'query', payload: '' });
       }
     },

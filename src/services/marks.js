@@ -18,8 +18,8 @@ export async function create(params) {
   })
 }
 
-export async function remove(params) {
-  return request(`mark?${qs.stringify(params)}`, {
+export async function remove(id) {
+  return request(`mark/` + id, {
     method: 'delete'
   })
 }

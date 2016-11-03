@@ -5,23 +5,23 @@ const MarkList = ({total, current, loading, dataSource,onPageChange,onDeleteItem
   const columns = [
     {
       title: '编码',
-      dataIndex: 'Id',
-      key: 'Id'
+      dataIndex: 'id',
+      key: 'idId'
     },{
       title: '标题',
-      dataIndex: 'Title',
-      key: 'Title'
+      dataIndex: 'title',
+      key: 'title'
     }, {
       title: '内容',
-      dataIndex: 'Content',
-      key: 'Content'
+      dataIndex: 'content',
+      key: 'content'
     },{
       title:'操作',
       key:'operation',
       render:(text, record)=>(
         <p>
           <a onClick={()=>{}}>编辑</a > &nbsp;
-          <Popconfirm title = '确认要删除么?' onConfirm = {() => onDeleteItem(record.Id)}>
+          <Popconfirm title = '确认要删除么?' onConfirm = {() => onDeleteItem(record.id)}>
             <a>删除</a>
           </Popconfirm>
         </p>)
@@ -37,7 +37,7 @@ const MarkList = ({total, current, loading, dataSource,onPageChange,onDeleteItem
 
   return (
     <div>
-      <Table columns={columns} dataSource={dataSource} loading={loading} rowKey={record => record.Id} pagination={pagination}/>
+      <Table columns={columns} dataSource={dataSource} loading={loading} rowKey={record => record.id} pagination={pagination}/>
     </div>
   )
 }
