@@ -22,20 +22,11 @@ export default class Header extends React.Component {
           </div>
           <div>
             <Menu mode="horizontal">
-              <Menu.Item key="timeline">
-                <Link to="/timeline">
-                  <Icon type="calendar"/>
-                  timeline
-                </Link>
-              </Menu.Item>
               <Menu.Item key="marks">
                 <Link to="/marks">
                   <Icon type="calendar"/>
-                  marks
+                  Mark记录
                 </Link>
-              </Menu.Item>
-              <Menu.Item key="heart">
-                <a href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer"><Icon type="heart"/>Time</a>
               </Menu.Item>
             </Menu>
           </div>

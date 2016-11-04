@@ -1,7 +1,9 @@
 import React, {PropTypes} from 'react';
-import {Form, Input, Modal, DatePicker, Checkbox} from 'antd'
+import {Form, Input, Modal, DatePicker, Checkbox, Radio} from 'antd'
 
 const FormItem = Form.Item
+const RadioButton = Radio.Button
+const RadioGroup = Radio.Group
 
 const formItemLayout = {
   labelCol: {
@@ -28,8 +30,13 @@ const MarkModal = ({
       if (errors) {
         return
       }
+      const fieldsValue = getFieldsValue()
+      console.log(fieldsValue)
       const data = {
         ...getFieldsValue(),
+        mark_at: fieldsValue['mark_at'].format(),
+        is_public: fieldsValue["is_public"] ? 'y':'n',
+        status: fieldsValue["status"] ? 'aa':'nn',
         key: item.key
       }
       onOk(data)
@@ -38,7 +45,7 @@ const MarkModal = ({
 
   function onCheckChange(e) {
     console.log(`checked = ${e.target.checked}`)
-    item.Status = e.target.checked === true
+    item.status = e.target.checked === true
       ? 'aa'
       : 'nn'
   }
@@ -53,9 +60,9 @@ const MarkModal = ({
   return (
     <Modal {...modalOpts}>
       <Form horizontal>
-        <FormItem label='标题：' hasFeedback {...formItemLayout}>
-          {getFieldDecorator('Title', {
-            initialValue: item.Title,
+        <FormItem label='标题：' {...formItemLayout}>
+          {getFieldDecorator('title', {
+            initialValue: item.title,
             rules: [
               {
                 required: true,
@@ -64,18 +71,58 @@ const MarkModal = ({
             ]
           })(<Input type='text'/>)}
         </FormItem>
-        <FormItem label="内容：" hasFeedback {...formItemLayout}>
-          {getFieldDecorator('Content', {
-            initialValue: item.Content,
+        <FormItem label="内容：" {...formItemLayout}>
+          {getFieldDecorator('content', {
+            initialValue: item.content,
             rules: [
               {
                 required: true,
                 message: '内容不能为空'
               }
             ]
+          })(<Input type="textarea" autosize={{ minRows: 2, maxRows: 6 }}/>)}
+        </FormItem>
+        <FormItem label="类别：" {...formItemLayout}>
+          {getFieldDecorator('type', {
+            initialValue: item.type,
+            rules: [
+              {
+                required: true,
+                message: '类别不能为空'
+              }
+            ]
           })(<Input type="text"/>)}
         </FormItem>
-        
+        <FormItem label="发生时间：" {...formItemLayout}>
+          {getFieldDecorator('mark_at', {
+            rules: [
+              {
+                required: true,
+                type: 'object',
+                message: '发生时间不能为空'
+              }
+            ]
+          })(<DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="发生时间" />)}
+        </FormItem>
+        <FormItem label="心情：" {...formItemLayout}>
+          {getFieldDecorator('mood', {
+            initialValue: item.mood,
+            rules: [
+              {
+                required: true,
+                message: '心情不能为空'
+              }
+            ]
+          })(<RadioGroup>
+              <RadioButton value="好">好</RadioButton>
+              <RadioButton value="一般">一般</RadioButton>
+              <RadioButton value="差">差</RadioButton>
+            </RadioGroup>)}
+        </FormItem>
+        <FormItem wrapperCol={{ span: 24, offset: 6 }}>
+         {getFieldDecorator('is_public')(<Checkbox defaultChecked={false} >公开</Checkbox>)}
+         {getFieldDecorator('status')(<Checkbox defaultChecked={true} >启用</Checkbox>)}
+        </FormItem>
       </Form>
     </Modal>
   )

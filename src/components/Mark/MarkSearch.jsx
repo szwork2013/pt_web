@@ -1,10 +1,11 @@
 import React, {PropTypes} from 'react'
 import {Button} from 'antd'
+import styles from './MarkSearch.less'
 
 const MarkSearch = ({onAdd}) => {
 
   return (
-    <div>
+    <div className={styles.normal}>
       <Button type="ghost" onClick={onAdd}>添加</Button>
     </div>
   )

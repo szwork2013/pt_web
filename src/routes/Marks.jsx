@@ -60,11 +60,14 @@ function Marks({location, dispatch, marks}) {
     }
   }
 
+  const MarkModalGen = () =>
+    <MarkModal {...markModalProps} />;
+
   return (
     <div>
       <MarkSearch {...markSearchProps}/>
       <MarkList {...markListProps}/>
-      <MarkModal {...markModalProps}/>
+      <MarkModalGen/>
     </div>
   );
 }

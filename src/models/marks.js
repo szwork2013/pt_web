@@ -54,11 +54,11 @@ export default {
       yield put({type:'hideModal'})
       yield put({type:'showLoading'})
       const {data} = yield call(create, payload)
-      if(data && data.issuccess){
-        message.success('add success', 3);
+      if(data && data.errcode === 1000){
+        message.success('添加成功', 3);
         yield put({ type: 'query', payload: '' });
       }else{
-        message.error('add fail', 5);
+        message.error('添加失败' + data.errmsg, 5);
         yield put({ type: 'query', payload: '' });
       }
     },

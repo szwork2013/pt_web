@@ -1,9 +1,14 @@
 import './index.html';
 import './index.less';
 import dva from 'dva';
+import { browserHistory } from 'dva/router';
+
 
 // 1. Initialize
-const app = dva();
+// const app = dva();
+const app = dva({
+  history: browserHistory,
+});
 
 // 2. Plugins
 //app.use({});
