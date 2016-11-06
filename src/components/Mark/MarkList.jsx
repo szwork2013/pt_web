@@ -7,12 +7,14 @@ const MarkList = ({total, current, loading, dataSource,onPageChange,onDeleteItem
     {
       title: '编码',
       dataIndex: 'id',
-      key: 'idId'
+      key: 'id',
+      fixed: 'left'
     },
     {
       title: '标题',
       dataIndex: 'title',
-      key: 'title'
+      key: 'title',
+      fixed: 'left'
     },
     {
       title: '内容',
@@ -46,6 +48,7 @@ const MarkList = ({total, current, loading, dataSource,onPageChange,onDeleteItem
     {
       title:'操作',
       key:'operation',
+      fixed: 'right',
       render:(text, record)=>(
         <p>
           {/* <a onClick={()=>{}}>编辑</a > &nbsp; */} 

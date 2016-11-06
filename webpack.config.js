@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const webpack = require('atool-build/lib/webpack');
-const ComponentPlugin = require("component-webpack-plugin");
+// const webpack = require('atool-build/lib/webpack');
 
 module.exports = function(webpackConfig, env) {
   webpackConfig.babel.plugins.push('transform-runtime');
