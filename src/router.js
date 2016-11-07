@@ -16,9 +16,9 @@ export default function({ history }) {
   return (
     <Router history={history}>
       <Route path="/" component={IndexPage} onEnter={requireAuth}>
-        <Route path="/" component={Marks} />
-        <Route path="/timeline" component={KnowTimeline} />
-        <Route path="/marks" component={Marks} />
+        <IndexRoute to="marks" />
+        <Route path="timeline" component={KnowTimeline} />
+        <Route path="marks" component={Marks} />
       </Route>
     </Router>
   );
