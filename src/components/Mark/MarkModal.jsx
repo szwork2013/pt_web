@@ -121,7 +121,9 @@ const MarkModal = ({
         </FormItem>
         <FormItem wrapperCol={{ span: 24, offset: 6 }}>
          {getFieldDecorator('is_public')(<Checkbox defaultChecked={false} >公开</Checkbox>)}
-         {getFieldDecorator('status')(<Checkbox defaultChecked={true} >启用</Checkbox>)}
+         {getFieldDecorator('status',{
+             initialValue: true
+           })(<Checkbox defaultChecked={true} >启用</Checkbox>)}
         </FormItem>
       </Form>
     </Modal>

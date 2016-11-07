@@ -16,6 +16,7 @@
     "react-free-scrollbar": "^1.0.0"
   },
   "devDependencies": {
+    "atool-build": "^0.9.0",
     "atool-test-mocha": "^0.1.5",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-dva-hmr": "^0.1.0",

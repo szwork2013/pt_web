@@ -8,13 +8,15 @@ const MarkList = ({total, current, loading, dataSource,onPageChange,onDeleteItem
       title: '编码',
       dataIndex: 'id',
       key: 'id',
-      fixed: 'left'
+      fixed: 'left',
+      width: 50
     },
     {
       title: '标题',
       dataIndex: 'title',
       key: 'title',
-      fixed: 'left'
+      fixed: 'left',
+      width: 80
     },
     {
       title: '内容',
@@ -49,9 +51,10 @@ const MarkList = ({total, current, loading, dataSource,onPageChange,onDeleteItem
       title:'操作',
       key:'operation',
       fixed: 'right',
+      width: 50,
       render:(text, record)=>(
         <p>
-          {/* <a onClick={()=>{}}>编辑</a > &nbsp; */} 
+          {/* <a onClick={()=>{}}>编辑</a > &nbsp; */}
           <Popconfirm title = '确认要删除么?' onConfirm = {() => onDeleteItem(record.id)}>
             <a>删除</a>
           </Popconfirm>
@@ -68,7 +71,7 @@ const MarkList = ({total, current, loading, dataSource,onPageChange,onDeleteItem
 
   return (
     <div>
-      <Table columns={columns} dataSource={dataSource} loading={loading} rowKey={record => record.id} pagination={pagination}/>
+      <Table columns={columns} dataSource={dataSource} loading={loading} rowKey={record => record.id} pagination={pagination} scroll={{ x: 1000 }} bordered={true}/>
     </div>
   )
 }

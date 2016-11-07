@@ -5,10 +5,10 @@ import { browserHistory } from 'dva/router';
 
 
 // 1. Initialize
-// const app = dva();
-const app = dva({
-  history: browserHistory,
-});
+const app = dva();
+// const app = dva({
+//   history: browserHistory,
+// });
 
 // 2. Plugins
 //app.use({});
