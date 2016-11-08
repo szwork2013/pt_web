@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
-import {Form, Input, Modal, DatePicker, Checkbox, Radio} from 'antd'
+import {Form, Input, Modal, DatePicker, Checkbox, Radio, Switch} from 'antd'
+import moment from 'moment'
 
 const FormItem = Form.Item
 const RadioButton = Radio.Button
@@ -31,7 +32,6 @@ const MarkModal = ({
         return
       }
       const fieldsValue = getFieldsValue()
-      console.log(fieldsValue)
       const data = {
         ...getFieldsValue(),
         mark_at: fieldsValue['mark_at'].format(),
@@ -95,6 +95,7 @@ const MarkModal = ({
         </FormItem>
         <FormItem label="发生时间：" {...formItemLayout}>
           {getFieldDecorator('mark_at', {
+            initialValue: moment(item.mark_at),
             rules: [
               {
                 required: true,
@@ -120,10 +121,16 @@ const MarkModal = ({
             </RadioGroup>)}
         </FormItem>
         <FormItem wrapperCol={{ span: 24, offset: 6 }}>
-         {getFieldDecorator('is_public')(<Checkbox defaultChecked={false} >公开</Checkbox>)}
+         {getFieldDecorator('is_public',{
+           valuePropName: 'checked',
+           initialValue: item.is_public === 'y',
+         })(<Checkbox >公开</Checkbox>)}
+        </FormItem>
+        <FormItem wrapperCol={{ span: 24, offset: 6 }}>
          {getFieldDecorator('status',{
-             initialValue: true
-           })(<Checkbox defaultChecked={true} >启用</Checkbox>)}
+            valuePropName: 'checked',
+            initialValue: item.status === 'aa',
+          })(<Checkbox>启用</Checkbox>)}
         </FormItem>
       </Form>
     </Modal>

@@ -12,7 +12,8 @@ function Marks({location, dispatch, marks}) {
     list,
     total,
     modalType,
-    modalVisible
+    modalVisible,
+    currentItem
   } = marks
 
   const markSearchProps = {
@@ -40,11 +41,19 @@ function Marks({location, dispatch, marks}) {
         type: `marks/delete`,
         payload: id,
       });
+    },
+    onEditItem(id){
+      dispatch({
+        type: `marks/query_one`,
+        payload: id,
+      });
     }
   }
 
   const markModalProps = {
-    item: modalType === 'create' ? {} : currentItem,
+    item: modalType === 'create' ? {
+      status: 'aa'
+    } : currentItem,
     type: modalType,
     visible: modalVisible,
     onOk(data){

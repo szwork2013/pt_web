@@ -22,6 +22,12 @@ export default class Header extends React.Component {
           </div>
           <div>
             <Menu mode="horizontal">
+              <Menu.Item key="subscribe">
+                <Link to="/subscribe">
+                  <Icon type="android"/>
+                  微信订阅
+                </Link>
+              </Menu.Item>
               <Menu.Item key="marks">
                 <Link to="/marks">
                   <Icon type="calendar"/>

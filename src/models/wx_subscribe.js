@@ -1,17 +1,19 @@
-import {query,create,remove,query_one} from '../services/marks'
+import {query} from '../services/wx_subscribe'
 import {parse} from 'qs'
 import {message} from 'antd'
 
 export default {
-  namespace: 'marks',
+  namespace: 'subscribe',
   state: {
     list: [],
     total: null,
     loading: false, //控制加载状态
-    current: null, //当前分页信息
+    current: 1, //当前分页信息
     currentItem: {}, //当前操作的用户对象
     modalVisible: false, //弹出框的显示状态
     modalType: 'create', //弹出框的类型（添加用户，编辑用户）
+    queryParams: '',
+    pageSize: 5
   },
   subscriptions: {
     setup({
@@ -19,10 +21,13 @@ export default {
       history
     }) {
       history.listen(location => {
-        if (location.pathname === '/marks') {
+        if (location.pathname === '/subscribe') {
           dispatch({
             type: 'query',
-            payload: location.query
+            payload: {
+              query: location.query,
+              size: 5
+            }
           })
         }
       })
@@ -31,13 +36,14 @@ export default {
   effects: {
     *query({payload}, {call,put}) {
       yield put({type: 'showLoading'})
-      const {data} = yield call(query, parse(payload))
+      yield put({type: 'updateQuery', payload})
+      const {data} = yield call(query, payload)
       if (data) {
         yield put({
           type: 'querySuccess',
           payload: {
             list: data.data.data,
-            total: data.total
+            total: data.data.total
           }
         })
       }else{
@@ -49,49 +55,7 @@ export default {
           }
         })
       }
-    },
-    *query_one({payload}, {call,put}) {
-      yield put({type: 'showLoading'})
-      const {data} = yield call(query_one, payload)
-      if (data && data.errcode === 1000) {
-        yield put({
-          type: 'queryOneSuccess',
-          payload: {
-            currentItem: data.data,
-            modalType: 'update'
-          }
-        })
-      }else{
-        yield put({type:'hideLoading'})
-        message.success('数据获取失败', 3);
-      }
-    },
-    *create({payload}, {call,put}) {
-      yield put({type:'hideModal'})
-      yield put({type:'showLoading'})
-      const {data} = yield call(create, payload)
-      if(data && data.errcode === 1000){
-        message.success('添加成功', 3);
-        yield put({ type: 'query', payload: '' });
-      }else{
-        message.error('添加失败', 5);
-        yield put({ type: 'query', payload: '' });
-      }
-    },
-    // delete是关键字
-    *'delete' ({payload}, {call, put}) {
-      yield put({type: 'hideModal'})
-      yield put({type: 'showLoading'})
-      const {data} = yield call(remove, payload)
-      if(data && data.errcode === 1000){
-        message.success('删除成功', 3);
-        yield put({ type: 'query', payload: '' });
-      }else{
-        message.error('删除失败', 5);
-        yield put({ type: 'query', payload: '' });
-      }
-    },
-    * update() {}
+    }
   },
   reducers: {
     showLoading(state, action) {
@@ -111,6 +75,9 @@ export default {
     },
     queryOneSuccess(state, action) {
       return {...state,...action.payload,loading: false,modalVisible: true}
+    },
+    updateQuery(state, action) {
+        return {...state,...action.payload}
     },
     createSuccess() {
     },
