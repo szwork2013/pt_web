@@ -20,8 +20,14 @@ export default class Header extends React.Component {
               <span>私人定制</span>
             </a>
           </div>
-          <div>
-            <Menu mode="horizontal">
+          <div className='ant-layout-header'>
+            <Menu mode="horizontal" className='header-menu'>
+              <Menu.Item key="home">
+                <Link to="/home">
+                  <Icon type="home"/>
+                  首页
+                </Link>
+              </Menu.Item>
               <Menu.Item key="subscribe">
                 <Link to="/subscribe">
                   <Icon type="android"/>
@@ -34,6 +40,12 @@ export default class Header extends React.Component {
                   Mark记录
                 </Link>
               </Menu.Item>
+              <SubMenu title={<span><Icon type="user" />ldd</span>}>
+                <Menu.Item key="setting:1">个人信息</Menu.Item>
+                <Menu.Item key="setting:2">密码修改</Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="setting:3">注销</Menu.Item>
+              </SubMenu>
             </Menu>
           </div>
         </div>

@@ -2,14 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import {Affix} from 'antd'
 import { connect } from 'dva';
 import { Link } from 'dva/router';
-import styles from './IndexPage.less';
-import HeaderBar from '../layouts/Header/HeaderLayout'
+import styles from './index.less';
+import HeaderBar from '../Header'
 import FreeScrollBar from 'react-free-scrollbar'
+import NavPath from '../../NavPath'
 
-function IndexPage({ children }) {
+function App({ children }) {
   return (
     <FreeScrollBar>
       <HeaderBar />
+      <NavPath />
       <div className={styles.container}>
           {children}
       </div>
@@ -17,7 +19,7 @@ function IndexPage({ children }) {
   );
 }
 
-IndexPage.propTypes = {
+App.propTypes = {
 };
 
-export default connect()(IndexPage);
+export default connect()(App);

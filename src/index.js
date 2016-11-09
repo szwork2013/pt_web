@@ -1,7 +1,7 @@
 import './index.html';
 import './index.less';
 import dva from 'dva';
-import { browserHistory } from 'dva/router';
+// import { browserHistory } from 'dva/router';
 // 推荐在入口文件全局设置 locale
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -21,6 +21,7 @@ const app = dva();
 app.model(require('./models/users'))
 app.model(require('./models/marks'))
 app.model(require('./models/wx_subscribe'))
+app.model(require('./models/layout'))
 
 // 4. Router
 app.router(require('./router'));

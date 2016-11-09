@@ -4,6 +4,7 @@ import {routerRedux} from 'dva/router'
 
 import SubscribeSearch from './SubscribeSearch'
 import SubscribeList from './SubscribeList'
+import SubscribeModal from './SubscribeModal'
 
 function WxSubscribe({location, dispatch, subscribe}) {
   const {
@@ -45,6 +46,7 @@ function WxSubscribe({location, dispatch, subscribe}) {
     dataSource: list,
     total,
     loading,
+    current,
     onPageChange(page) {
       dispatch({type: 'subscribe/updateQuery', payload: {
         current: page
@@ -58,6 +60,31 @@ function WxSubscribe({location, dispatch, subscribe}) {
       // dispatch(routerRedux.push({pathname: 'subscribe', query: {
       //     page
       //   }}))
+    },
+    onOpenModal(data){
+      dispatch({
+        type: 'subscribe/showModal',
+        payload:{
+          modalType: 'dtl',
+          currentItem: data
+        }
+      })
+    }
+  }
+
+  const subscribeModalProps = {
+    item: modalType === 'create' ? {} : currentItem,
+    type: modalType,
+    visible: modalVisible,
+    onOk(){
+      dispatch({
+        type: 'subscribe/hideModal'
+      })
+    },
+    onCancel(){
+      dispatch({
+        type: 'subscribe/hideModal'
+      })
     }
   }
 
@@ -66,6 +93,7 @@ function WxSubscribe({location, dispatch, subscribe}) {
       <SubscribeSearch {...subscribeSearchProps}/>
       <br/>
       <SubscribeList {...subscribeListProps} />
+      <SubscribeModal {...subscribeModalProps}/>
     </div>
   );
 }

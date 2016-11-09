@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
-import {Table, message, Popconfirm} from 'antd'
+import {Table, message, Popconfirm,Pagination} from 'antd'
 import moment from 'moment'
 
-const SubscribeList = ({total, current, loading, dataSource,onPageChange}) => {
+const SubscribeList = ({total, current, loading, dataSource,onPageChange,onOpenModal}) => {
   const columns = [
     {
       title: '头像',
@@ -65,6 +65,16 @@ const SubscribeList = ({total, current, loading, dataSource,onPageChange}) => {
         else
           return '无效'
       }
+    },
+    {
+      title:'操作',
+      key:'operation',
+      fixed: 'right',
+      width: 50,
+      render:(text, record)=>(
+        <p>
+          <a onClick={()=> onOpenModal(record)}>详情</a >
+        </p>)
     }
   ]
 
@@ -73,11 +83,22 @@ const SubscribeList = ({total, current, loading, dataSource,onPageChange}) => {
     pageSize: 5,
     defaultCurrent: 1,
     onChange: onPageChange,
+    current,
+    showTotal(total){
+      return `总共 ${total} 条数据`
+    }
   }
 
   return (
     <div>
-      <Table columns={columns} current={current} dataSource={dataSource} loading={loading} rowKey={record => record.uid} pagination={pagination} scroll={{ x: 1000 }} bordered={true}/>
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        loading={loading}
+        rowKey={record => record.uid}
+        pagination={pagination}
+        scroll={{ x: 1000 }}
+        bordered={true}/>
     </div>
   )
 }

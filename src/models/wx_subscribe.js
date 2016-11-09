@@ -36,7 +36,7 @@ export default {
   effects: {
     *query({payload}, {call,put}) {
       yield put({type: 'showLoading'})
-      yield put({type: 'updateQuery', payload})
+      // yield put({type: 'updateQuery', payload})
       const {data} = yield call(query, payload)
       if (data) {
         yield put({

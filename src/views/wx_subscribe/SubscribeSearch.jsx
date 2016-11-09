@@ -27,7 +27,7 @@ const SubscribeSearch = ({
       const query1 = 'WxNickName' +'='+ fieldsValue['wxNickName'] || ''
       let query2 = ''
       let query3 = ''
-      if(rangeTimeValue && rangeTimeValue.lengtn === 2){
+      if(rangeTimeValue && rangeTimeValue.length === 2){
         query2 = ',begin'+'='+rangeTimeValue[0].format()
         query3 = ',end'+'='+rangeTimeValue[1].format()
       }
