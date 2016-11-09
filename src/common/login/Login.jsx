@@ -1,17 +1,20 @@
 import React, {PropTypes} from 'react'
+import {connect} from 'dva'
 import {Card, Form, Input, Icon, Button, Checkbox} from 'antd'
-import { hashHistory } from 'dva/router'
 import styles from './Login.less'
 
 const FormItem = Form.Item
 
 const Login = ({
+  auth,
   form: {
+    dispatch,
     getFieldDecorator,
     validateFields,
     getFieldsValue
   }
 }) => {
+  console.log(dispatch);
   function handleSubmit(e) {
     e.preventDefault();
     validateFields((errors) => {
@@ -27,8 +30,7 @@ const Login = ({
       //   key: item.key
       // }
       // onOk(data)
-      localStorage.setItem('token', 'aaa')
-      hashHistory.push({pathname: '/'})
+      dispatch({type: 'auth/login'})
     })
   }
 
@@ -77,4 +79,15 @@ const Login = ({
   )
 }
 
-export default Form.create()(Login)
+Login.propTypes = {
+  auth: PropTypes.object
+};
+
+function mapStateToProps({auth}) {
+  return {auth}
+}
+
+export default Form.create({ mapPropsToFields({auth}) { 
+  console.log(auth);
+  return {auth} 
+}})(Login)

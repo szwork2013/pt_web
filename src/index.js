@@ -22,6 +22,7 @@ app.model(require('./models/users'))
 app.model(require('./models/marks'))
 app.model(require('./models/wx_subscribe'))
 app.model(require('./models/layout'))
+app.model(require('./models/auth'))
 
 // 4. Router
 app.router(require('./router'));

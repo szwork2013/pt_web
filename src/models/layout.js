@@ -45,18 +45,19 @@ export default {
   },
   reducers: {
     updateNavPath(state, action) {
-      let navpath = []
+      let navpath = [], childs
       if(action.payload.keyPath){
         action.payload.keyPath.reverse().map((item)=>{
           let tmpOb = _.find(state.menus, function(o) {
             return o.key == item;
           })
-          if(!tmpOb || tmpOb.name === '首页')return
-          let childs = tmpOb.childs
-          navpath.push({
-            key: tmpOb.key,
-            name: tmpOb.name
-          })
+          if(tmpOb && tmpOb.name !== '首页'){
+            childs = tmpOb.childs
+            navpath.push({
+              key: tmpOb.key,
+              name: tmpOb.name
+            })
+          }
 
           if(childs){
             tmpOb = _.find(childs, function(o) {
