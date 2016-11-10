@@ -5,15 +5,17 @@ export default {
   state: {
       isLogin: false
   },
-  reducers: {
-    login(state, action){
+  effects: {
+    login(){
       localStorage.setItem('token', 'aaa')
       hashHistory.push({pathname: '/'})
-      return {...state}
     },
     logout(state, action) {
       localStorage.clear()
-      return {...state}
-    },
+      hashHistory.push({pathname: '/login'})
+    }
+  },
+  reducers: {
+
   }
 }

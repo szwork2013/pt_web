@@ -12,10 +12,14 @@ const Header = ({dispatch, layout}) => {
   const {menus} = layout
 
   function menuClick(item){
-    dispatch({type: 'layout/updateNavPath', payload: {
-      keyPath: item.keyPath,
-      key: item.key
-    }})
+    if(item.key === 'logout'){
+      dispatch({type: 'auth/logout', payload: {}})
+    }else{
+      dispatch({type: 'layout/updateNavPath', payload: {
+        keyPath: item.keyPath,
+        key: item.key
+      }})
+    }
   }
 
   const head = styles.headerCls
@@ -64,7 +68,7 @@ const Header = ({dispatch, layout}) => {
               <Menu.Item key="setting:1">个人信息</Menu.Item>
               <Menu.Item key="setting:2">密码修改</Menu.Item>
               <Menu.Divider/>
-              <Menu.Item key="setting:3">注销</Menu.Item>
+              <Menu.Item key="logout">注销</Menu.Item>
             </SubMenu>
           </Menu>
         </div>

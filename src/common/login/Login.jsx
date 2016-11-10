@@ -7,14 +7,13 @@ const FormItem = Form.Item
 
 const Login = ({
   auth,
+  dispatch,
   form: {
-    dispatch,
     getFieldDecorator,
     validateFields,
     getFieldsValue
   }
 }) => {
-  console.log(dispatch);
   function handleSubmit(e) {
     e.preventDefault();
     validateFields((errors) => {
@@ -30,7 +29,7 @@ const Login = ({
       //   key: item.key
       // }
       // onOk(data)
-      dispatch({type: 'auth/login'})
+      dispatch({type: 'auth/login', payload: {}})
     })
   }
 
@@ -86,8 +85,4 @@ Login.propTypes = {
 function mapStateToProps({auth}) {
   return {auth}
 }
-
-export default Form.create({ mapPropsToFields({auth}) { 
-  console.log(auth);
-  return {auth} 
-}})(Login)
+export default connect(mapStateToProps)(Form.create()(Login))
